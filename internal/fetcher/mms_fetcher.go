@@ -145,7 +145,7 @@ func (f *Fetcher) RunDailyJob() {
 func (f *Fetcher) VerificarDadosFaltantes() {
 	now := time.Now().Truncate(24 * time.Hour)
 	start := now.AddDate(0, 0, -365).Unix()
-	end := now.Unix()
+	end := now.AddDate(0, 0, -1).Unix()
 
 	for _, pair := range constants.SymbolPairMap {
 		existentes := f.Repository.BuscarDiasFaltantes(pair, start, end)
