@@ -1,0 +1,42 @@
+services:
+
+  mms-api:
+    build: 
+      context: .
+    image: mms-api
+    container_name: mms-api
+    restart: always
+    ports:
+      - "9000:9000"
+    environment:
+      - PORT=${PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DELAY_FETCHER_SECONDS=${DELAY_FETCHER_SECONDS}
+      - EMAIL_SENHA=${EMAIL_SENHA}
+      - EMAIL_ALERT=${EMAIL_ALERT}
+    networks:
+      - root_mms
+  mms-db:
+    image: postgres:15
+    container_name: mms-db
+    environment:
+      POSTGRES_USER: adm
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: mms
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - root_mms
+
+networks:
+  root_mms:
+
+volumes:
+  pgdata:
+
