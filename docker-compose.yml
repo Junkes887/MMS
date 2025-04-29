@@ -16,7 +16,8 @@ services:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
       - DELAY_FETCHER_SECONDS=${DELAY_FETCHER_SECONDS}
-      - EMAIL_SENHA=${EMAIL_SENHA}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
       - EMAIL_ALERT=${EMAIL_ALERT}
     networks:
       - root_mms

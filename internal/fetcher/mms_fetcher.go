@@ -176,7 +176,7 @@ func (f *Fetcher) VerificarDadosFaltantes() {
 
 var enviarEmailAlerta = func(f *Fetcher, pair string, diasFaltando []int64) {
 	m := gomail.NewMessage()
-	m.SetHeader("From", "vitrine.me.site@gmail.com")
+	m.SetHeader("From", os.Getenv("EMAIL_USER"))
 	m.SetHeader("To", os.Getenv("EMAIL_ALERT"))
 	m.SetHeader("Subject", fmt.Sprintf("ALERTA: Falha em dados de %s", pair))
 	body := fmt.Sprintf("Foram encontrados %d dias faltando para o par %s:\n\n", len(diasFaltando), pair)
@@ -186,7 +186,7 @@ var enviarEmailAlerta = func(f *Fetcher, pair string, diasFaltando []int64) {
 	}
 	m.SetBody("text/plain", body)
 
-	d := gomail.NewDialer("smtp.gmail.com", 587, "vitrine.me.site@gmail.com", os.Getenv("EMAIL_SENHA"))
+	d := gomail.NewDialer("smtp.gmail.com", 587, os.Getenv("EMAIL_USER"), os.Getenv("EMAIL_PASSWORD"))
 
 	if err := d.DialAndSend(m); err != nil {
 		f.Logger.Error("Erro ao enviar e-mail de alerta", zap.Error(err))

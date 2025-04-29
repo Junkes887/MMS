@@ -23,8 +23,9 @@ DB_NAME=mms
 DB_HOST=localhost
 DB_PORT=5432
 DELAY_FETCHER_SECONDS=120
-EMAIL_SENHA=senha-do-app-gmail
-EMAIL_ALERT=seu@email.com
+EMAIL_USER=seu@email.com
+EMAIL_PASSWORD=senha-do-app-gmail
+EMAIL_ALERT=destino@email.com
 ```
 
 ### 3. Build e execução local
@@ -108,7 +109,8 @@ O sistema valida diariamente a integridade dos registros dos últimos 365 dias:
 
 **Variáveis necessárias:**
 
-- `EMAIL_SENHA`: Senha de App do Gmail para envio.
+- `EMAIL_USER`: Endereço de e-mail que enviará os alertas.
+- `EMAIL_PASSWORD`: Senha de App do Gmail para envio.
 - `EMAIL_ALERT`: Endereço de e-mail que receberá os alertas.
 
 ---
